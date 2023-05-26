@@ -25,13 +25,3 @@ export async function readNews() {
         throw new Error("Read Error")
     }
 }
-
-export async function readCount() {
-    const response = await (fetch(`${API}/count`))
-    const resFromBack = await response.json()
-    if (response.ok) {
-        return resFromBack
-    } else {
-        throw new Error("Read Error")
-    }
-}

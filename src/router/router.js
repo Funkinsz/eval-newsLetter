@@ -8,8 +8,9 @@ import { userLoader } from "../Loader/userLoader";
 import Profile from "../pages/profile/profile";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import Admin from "../pages/admin/Admin";
-import Insert from "../pages/admin/Insert";
+import Insert from "../pages/admin/pages/Insert";
 import ProtectedAdmin from "../components/ProtectedRoute/ProtectedAdmin";
+import Update from "../pages/admin/pages/Update";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedAdmin>
             <Insert />
+          </ProtectedAdmin>
+        ),
+      },
+      {
+        path: "/update",
+        element: (
+          <ProtectedAdmin>
+            <Update />
           </ProtectedAdmin>
         ),
       },

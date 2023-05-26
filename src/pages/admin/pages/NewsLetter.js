@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
+import { NavLink } from "react-router-dom";
 
 export default function NewsLetter(props) {
   const { data } = props;
@@ -21,18 +22,20 @@ export default function NewsLetter(props) {
 
   return (
     <>
-      <div>
+      <div className={`d-flex flex-column m20`}>
         {currentItems.map((n) => {
           return (
-            <div>
+            <div className={`d-flex flex-column m20`}>
               <h2>{n.title}</h2>
               <h3>{n.type}</h3>
               <p>{n.content}</p>
+              <NavLink to='/update' className={`btn btn-primary`}>Modifier</NavLink>
             </div>
           );
         })}
       </div>
       <ReactPaginate
+        className={`d-flex jcc m20`}
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}

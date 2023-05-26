@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import s from "./admin.module.scss";
 import { useForm } from "react-hook-form";
-import {addNews} from "../../apis/news";
+import {addNews} from "../../../apis/news";
 import { useNavigate } from "react-router";
 
 export default function Insert() {
@@ -51,11 +50,11 @@ export default function Insert() {
 
       <form onSubmit={submit}>
 
-        <div className={`${s.block}`}>
+        <div className={`block`}>
           <label htmlFor="title">TITRE</label>
           <input type="text" {...register("title")} />
           {errors?.title && (
-            <p className={`${s.error}`}>{errors.title.message}</p>
+            <p className={`error`}>{errors.title.message}</p>
           )}
         </div>
 
@@ -81,7 +80,7 @@ export default function Insert() {
         </div>
 
         {errors.generic && (
-          <p className={`${s.error}`}>{errors.generic.message}</p>
+          <p className={`error`}>{errors.generic.message}</p>
         )}
 
         <button disabled={isSubmitting}>Valider</button>

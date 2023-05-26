@@ -77,3 +77,31 @@ footer {
     }
   }
 }
+
+.disabled {
+  a {
+    color: grey;
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+.selected {
+  a {
+    margin: 5px;
+    color: orangered;
+  }
+}
+
+.next {
+  a {
+    margin: 5px;
+  }
+}
+
+.previous {
+  a {
+    margin: 5px;
+  }
+}
