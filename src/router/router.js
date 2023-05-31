@@ -11,6 +11,11 @@ import Admin from "../pages/admin/Admin";
 import Insert from "../pages/admin/pages/Insert";
 import ProtectedAdmin from "../components/ProtectedRoute/ProtectedAdmin";
 import Update from "../pages/admin/pages/Update";
+import Musique from "../pages/homepage/musique/Musique";
+import JeuxVideo from "../pages/homepage/jv/JeuxVideo";
+import Cinema from "../pages/homepage/cinema/Cinema";
+import Event from "../pages/homepage/event/Event";
+import Resume from "../pages/homepage/news/Resumes";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +68,26 @@ export const router = createBrowserRouter([
           </ProtectedAdmin>
         ),
       },
+      {
+        path: "/musique",
+        element: <Musique />
+      },
+      {
+        path: "/jv",
+        element: <JeuxVideo />
+      },
+      {
+        path: "/cinema",
+        element: <Cinema />
+      },
+      {
+        path: "/event",
+        element: <Event />
+      },
+      {
+        path: '/resume/*',
+        element: <Resume />
+      }
     ],
   },
 ]);

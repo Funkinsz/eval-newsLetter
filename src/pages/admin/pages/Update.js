@@ -1,5 +1,5 @@
 export default function Update() {
     return (
-        <h1>UPGRADE</h1>
+        <h1>UPDATE</h1>
     )
 }

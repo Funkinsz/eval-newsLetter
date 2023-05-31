@@ -34,10 +34,10 @@ export default function Header() {
       </div>
       <div className={`secondary-nav d-flex`}>
         <ul className={`d-flex flex-fill jcse`}>
-          <NavLink className={`d-flex flex-fill aic jcc`}>MUSIQUE</NavLink>
-          <NavLink className={`d-flex flex-fill aic jcc`}>JEUX VIDEO</NavLink>
-          <NavLink className={`d-flex flex-fill aic jcc`}>CINEMA</NavLink>
-          <NavLink className={`d-flex flex-fill aic jcc`}>EVENEMENTS</NavLink>
+          <NavLink to='/musique' className={`d-flex flex-fill aic jcc`}>MUSIQUE</NavLink>
+          <NavLink to='/jv' className={`d-flex flex-fill aic jcc`}>JEUX VIDEO</NavLink>
+          <NavLink to='/cinema' className={`d-flex flex-fill aic jcc`}>CINEMA</NavLink>
+          <NavLink to='/event' className={`d-flex flex-fill aic jcc`}>EVENEMENTS</NavLink>
         </ul>
       </div>
     </header>
