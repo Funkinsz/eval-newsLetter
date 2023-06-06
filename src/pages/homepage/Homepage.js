@@ -45,7 +45,7 @@ export default function Admin() {
               className={`${s.last} m10`}>
               <h1 className="m20">A LA UNE !</h1>
               <h2 className="m20">{lastNews[0].title}</h2>
-              <h3 className="m20">{lastNews[0].type}</h3>
+              <h3 className="secondary m20">{lastNews[0].type}</h3>
               <p className="m20">{lastNews[0].content}</p>
             </NavLink>
 
@@ -57,7 +57,7 @@ export default function Admin() {
                     to={`/resume?id=${a.id}`}
                     key={i}>
                     <h2 className="m20">{a.title}</h2>
-                    <h3 className="m20">{a.type}</h3>
+                    <h3 className="secondary m20">{a.type}</h3>
                     <p className="m20">{a.content}</p>
                   </NavLink>
                 </div>

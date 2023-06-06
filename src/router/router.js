@@ -69,7 +69,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/musique",
+        path: "/theme/*",
         element: <Musique />
       },
       {

@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--light);
+  background-color: #e9e9e9;
   min-height: 100vh;
 }
 
@@ -42,7 +42,7 @@ img {
 
 header {
   box-shadow: 0 1px 5px #999;
-  margin-bottom: 1rem;
+  z-index: 1;
   nav {
     ul {
       a {
@@ -67,6 +67,7 @@ header {
 
 section {
   min-height: 100vh;
+  width: 100%;
 }
 
 footer {
@@ -82,6 +83,10 @@ footer {
       color: white;
     }
   }
+}
+
+.active {
+  color: var(--divider);
 }
 
 .disabled {

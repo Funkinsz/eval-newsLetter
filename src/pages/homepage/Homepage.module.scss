@@ -1,9 +1,11 @@
 .container {
-  width: 1000px;
+  width: 850px;
   min-height: 100vh;
+  border-right: 1px solid #999;
+  box-shadow: 1px 0 5px 2px #999;
   .last {
-    border: solid 1px var(--primary);
-    box-shadow: 0 1px 3px 1px #999;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 1px var(--divider);
     padding: 20px;
     h1 {
       font-size: 32px;
@@ -40,6 +42,7 @@
   position: sticky;
   top: 50px;
   width: 300px;
+  height: 350px;
   padding: 0 10px;
   margin: 0 10px;
   h2 {

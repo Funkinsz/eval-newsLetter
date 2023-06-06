@@ -1,14 +1,22 @@
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Header() {
-  const { user, signout } = useContext(AuthContext)
+  const { user, signout } = useContext(AuthContext);
+
+  // useEffect(() => {
+  //   const refreshPage = setTimeout(() => {
+  //     window.location.reload();
+  //   }, 1000)
+  //   return () => clearTimeout(timer)
+  // }, []);
+
   return (
     <header>
       <div className={`d-flex jcsb aic main-nav m20`}>
         <NavLink to="/">
-          <h1 className={`m10`}>MY NEWS</h1>
+          <h1 className={`divider m10`}>MY NEWS</h1>
         </NavLink>
         <nav>
           <ul className={`d-flex`}>
@@ -26,7 +34,9 @@ export default function Header() {
             ) : (
               <>
                 <NavLink to="profile">USER</NavLink>
-                <NavLink onClick={() => signout()} to="/login">DECONNEXION</NavLink>
+                <NavLink onClick={() => signout()} to="/login">
+                  DECONNEXION
+                </NavLink>
               </>
             )}
           </ul>
@@ -34,10 +44,30 @@ export default function Header() {
       </div>
       <div className={`secondary-nav d-flex`}>
         <ul className={`d-flex flex-fill jcse`}>
-          <NavLink to='/musique' className={`d-flex flex-fill aic jcc`}>MUSIQUE</NavLink>
-          <NavLink to='/jv' className={`d-flex flex-fill aic jcc`}>JEUX VIDEO</NavLink>
-          <NavLink to='/cinema' className={`d-flex flex-fill aic jcc`}>CINEMA</NavLink>
-          <NavLink to='/event' className={`d-flex flex-fill aic jcc`}>EVENEMENTS</NavLink>
+          <NavLink
+            // onClick={refreshPage}
+            to="/theme?t=musique"
+            className={`d-flex flex-fill aic jcc`}>
+            MUSIQUE
+          </NavLink>
+          <NavLink
+            // onClick={refreshPage}
+            to="/theme?t=jeux video"
+            className={`d-flex flex-fill aic jcc`}>
+            JEUX VIDEO
+          </NavLink>
+          <NavLink
+            // onClick={refreshPage}
+            to="/theme?t=cinema"
+            className={`d-flex flex-fill aic jcc`}>
+            CINEMA
+          </NavLink>
+          <NavLink
+            // onClick={refreshPage}
+            to="/theme?t=evenement"
+            className={`d-flex flex-fill aic jcc`}>
+            EVENEMENTS
+          </NavLink>
         </ul>
       </div>
     </header>

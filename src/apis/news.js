@@ -36,8 +36,9 @@ export async function readLast() {
     }
 }
 
-export async function readMusic() {
-    const response = await (fetch(`${API}/musique`))
+export async function readMusic(data) {
+    console.log(data);
+    const response = await (fetch(`${API}/theme?t=${data}`))
     const resFromBack = await response.json()
     if (response.ok) {
         return resFromBack

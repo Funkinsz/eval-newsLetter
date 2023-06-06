@@ -32,11 +32,11 @@ export default function NewsLetter(props) {
 
   return (
     <>
-      <div className={`d-flex flex-column`}>
+      <div className={`d-flex flex-fill flex-column jcse`}>
         {currentItems.map((n) => {
           return (
             <div className={`d-flex flex-column m10`}>
-              <NavLink onClick={() => handleCount(n.id)} to={`/resume/${n.id}`}>
+              <NavLink onClick={() => handleCount(n.id)} to={`/resume?id=${n.id}`}>
                 <h2>{n.title}</h2>
                 <h4>{n.type}</h4>
               </NavLink>
