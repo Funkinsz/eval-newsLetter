@@ -50,7 +50,7 @@ export default function Login() {
       {user ? (
         <Navigate to="/profile" />
       ) : (
-        <section className={`d-flex flex-column aic p20`}>
+        <div className={`d-flex flex-fill flex-column aic p20`}>
           <h1>CONNEXION</h1>
 
           <form onSubmit={submit} className={`d-flex flex-column aic jcc m20`}>
@@ -76,7 +76,7 @@ export default function Login() {
               Connexion
             </button>
           </form>
-        </section>
+        </div>
       )}
     </>
   );

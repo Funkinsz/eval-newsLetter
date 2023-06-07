@@ -20,7 +20,6 @@ export default function Footer() {
     news();
   }, []);
 
-  console.log(resTop5);
   return (
     <footer className={`d-flex jcsb p20`}>
       {resTop5.length > 0 && (

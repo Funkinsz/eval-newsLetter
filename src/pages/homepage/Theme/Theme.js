@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
-import { countNews, readMusic } from "../../../apis/news";
+import { countNews, readTheme } from "../../../apis/news";
 import s from "../Homepage.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import NewsLetter from "../news/NewsLetter";
 
-export default function Musique() {
-  const [newsMusic, setNewsMusic] = useState([]);
-  
-  const queryParameters = new URLSearchParams(window.location.search);
+export default function Theme() {
+  const [newsTheme, setNewsTheme] = useState([]);
+  const location = useLocation()
+  const queryParameters = new URLSearchParams(location.search);
   const theme = queryParameters.get("t");
-
-  console.log(theme);
   
   const news = async () => {
     try {
-      const resMusic = await readMusic(theme);
-      setNewsMusic(resMusic);
+      const resTheme = await readTheme(theme);
+      setNewsTheme(resTheme);
     } catch (error) {
       console.error(error);
     }
@@ -36,20 +34,20 @@ export default function Musique() {
   return (
     <section className="d-flex">
       <div className={`${s.container}`}>
-        {newsMusic.length > 0 && (
+        {newsTheme.length > 0 && (
           <div className="d-flex flex-column aic">
             <NavLink
-              onClick={() => handleCount(newsMusic[0].id)}
-              to={`/resume?id=${newsMusic[0].id}`}
+              onClick={() => handleCount(newsTheme[0].id)}
+              to={`/resume?id=${newsTheme[0].id}`}
               className={`${s.last} m10`}>
               <h1 className="m20">A LA UNE !</h1>
-              <h2 className="m20">{newsMusic[0].title}</h2>
-              <h3 className="secondary m20">{newsMusic[0].type}</h3>
-              <p className="m20">{newsMusic[0].content}</p>
+              <h2 className="m20">{newsTheme[0].title}</h2>
+              <h3 className="secondary m20">{newsTheme[0].type}</h3>
+              <p className="m20">{newsTheme[0].content}</p>
             </NavLink>
 
             <div className={`${s.group} d-flex`}>
-              {newsMusic.map((a, i) => (
+              {newsTheme.map((a, i) => (
                 <div className={`${s.oneNews}`}>
                   <NavLink
                     onClick={() => handleCount(a.id)}
@@ -66,7 +64,7 @@ export default function Musique() {
         )}
       </div>
       <div id="container" className={`${s.news} d-flex flex-column jcsb`}>
-        <NewsLetter data={newsMusic} />
+        <NewsLetter data={newsTheme} />
       </div>
     </section>
   );

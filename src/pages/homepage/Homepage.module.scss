@@ -23,8 +23,9 @@
   .group {
     flex-wrap: wrap;
     .oneNews {
-      padding: 20px;
-      width: 50%;
+      transition: 0.15s;
+      margin: 10px;
+      width: 47%;
       h2 {
         font-size: 32px;
       }
@@ -33,6 +34,12 @@
       }
       p {
         font-size: 18px;
+      }
+      &:hover {
+        border-radius: 5px;
+        box-shadow: 0 0 5px 1px var(--divider);
+        transition: 0.15s;
+        transform: scale(1.01);
       }
     }
   }
@@ -45,18 +52,30 @@
   height: 350px;
   padding: 0 10px;
   margin: 0 10px;
-  h2 {
-    font-size: 18px;
-  }
-  h4 {
-    font-size: 12px;
-    margin: 5px 0;
-  }
-  .page {
-    li {
-      a {
-        padding: 0 6px;
-        border: 1px solid var(--primary);
+  .sidebar {
+    .sbarnews {
+      transition: 0.15s;
+      padding: 0 10px;
+      h2 {
+        font-size: 18px;
+      }
+      h4 {
+        font-size: 12px;
+        margin: 5px 0;
+      }
+      .page {
+        li {
+          a {
+            padding: 0 6px;
+            border: 1px solid var(--primary);
+          }
+        }
+      }
+      &:hover {
+        transition: 0.15s;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 1px var(--divider);
+        transform: scale(1.01);
       }
     }
   }

@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import { readResume } from "../../../apis/news";
+import { readNews, readResume } from "../../../apis/news";
+import { useLocation } from "react-router";
+import s from "../Homepage.module.scss";
+import NewsLetter from "./NewsLetter";
 
 export default function Resume() {
-  const queryParameters = new URLSearchParams(window.location.search);
+  // recherche l'id dans l'url pour envoyé une requete ciblé sur un article
+  const location = useLocation();
+  const queryParameters = new URLSearchParams(location.search);
   const id = Number(queryParameters.get("id"));
 
-  console.log(id);
-
   const [newsLetter, setNewLetter] = useState([]);
+  const [newsSelected, setNewsSelected] = useState([])
 
   const news = async () => {
     try {
-      const resNews = await readResume(id);
+      const resSelect = await readResume(id);
+      const resNews = await readNews();
+      setNewsSelected(resSelect);
       setNewLetter(resNews);
     } catch (error) {
       console.error(error);
@@ -20,17 +26,23 @@ export default function Resume() {
 
   useEffect(() => {
     news();
-  }, []);
+  }, [id]);
 
   return (
     <section>
-      {newsLetter.length > 0 && (
-        <>
-          <h1>{newsLetter[0].title}</h1>
-          <h3>{newsLetter[0].type}</h3>
-          <p>{newsLetter[0].content}</p>
-        </>
-      )}
+      <div className={`${s.container}`}>
+        {newsSelected.length > 0 && (
+          <div className={`${s.last} m10`}>
+            <h1 className="m20">A LA UNE !</h1>
+            <h2 className="m20">{newsSelected[0].title}</h2>
+            <h3 className="secondary m20">{newsSelected[0].type}</h3>
+            <p className="m20">{newsSelected[0].content}</p>
+          </div>
+        )}
+      </div>
+      <div id="container" className={`${s.news} d-flex flex-column jcsb`}>
+        <NewsLetter data={newsLetter} id={id} />
+      </div>
     </section>
   );
 }

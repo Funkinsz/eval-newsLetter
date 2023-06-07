@@ -6,8 +6,6 @@ import s from "./Homepage.module.scss";
 import { NavLink } from "react-router-dom";
 
 export default function Admin() {
-  const { user } = useContext(AuthContext);
-
   const [newsLetter, setNewLetter] = useState([]);
   const [lastNews, setLastNews] = useState([]);
 
@@ -35,10 +33,10 @@ export default function Admin() {
   }, []);
 
   return (
-    <section className="d-flex">
+    <section>
       <div className={`${s.container}`}>
         {lastNews.length > 0 && (
-          <div className="d-flex flex-column aic">
+          <div className={`d-flex flex-column aic`}>
             <NavLink
               onClick={() => handleCount(lastNews[0].id)}
               to={`/resume?id=${lastNews[0].id}`}
@@ -49,7 +47,7 @@ export default function Admin() {
               <p className="m20">{lastNews[0].content}</p>
             </NavLink>
 
-            <div className={`${s.group} d-flex`}>
+            <div className={`${s.group} d-flex jcse`}>
               {lastNews.map((a, i) => (
                 <div className={`${s.oneNews}`}>
                   <NavLink

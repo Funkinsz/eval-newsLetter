@@ -1,16 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 export default function Header() {
   const { user, signout } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   const refreshPage = setTimeout(() => {
-  //     window.location.reload();
-  //   }, 1000)
-  //   return () => clearTimeout(timer)
-  // }, []);
 
   return (
     <header>
@@ -44,26 +37,18 @@ export default function Header() {
       </div>
       <div className={`secondary-nav d-flex`}>
         <ul className={`d-flex flex-fill jcse`}>
-          <NavLink
-            // onClick={refreshPage}
-            to="/theme?t=musique"
-            className={`d-flex flex-fill aic jcc`}>
+          <NavLink to="/theme?t=musique" className={`d-flex flex-fill aic jcc`}>
             MUSIQUE
           </NavLink>
           <NavLink
-            // onClick={refreshPage}
             to="/theme?t=jeux video"
             className={`d-flex flex-fill aic jcc`}>
             JEUX VIDEO
           </NavLink>
-          <NavLink
-            // onClick={refreshPage}
-            to="/theme?t=cinema"
-            className={`d-flex flex-fill aic jcc`}>
+          <NavLink to="/theme?t=cinema" className={`d-flex flex-fill aic jcc`}>
             CINEMA
           </NavLink>
           <NavLink
-            // onClick={refreshPage}
             to="/theme?t=evenement"
             className={`d-flex flex-fill aic jcc`}>
             EVENEMENTS
