@@ -43,6 +43,9 @@ export default function Theme() {
               <h1 className="m20">A LA UNE !</h1>
               <h2 className="m20">{newsTheme[0].title}</h2>
               <h3 className="secondary m20">{newsTheme[0].type}</h3>
+              <div className="imge">
+                <img src={newsTheme[0].img} alt="" />
+              </div>
               <p className="m20">{newsTheme[0].content}</p>
             </NavLink>
 
@@ -55,6 +58,9 @@ export default function Theme() {
                     key={i}>
                     <h2 className="m20">{a.title}</h2>
                     <h3 className="secondary m20">{a.type}</h3>
+                    <div className="img">
+                      <img src={a.img} alt="" />
+                    </div>
                     <p className="m20">{a.content}</p>
                   </NavLink>
                 </div>

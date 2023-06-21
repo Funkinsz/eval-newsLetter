@@ -36,6 +36,9 @@ export default function Resume() {
             <h1 className="m20">A LA UNE !</h1>
             <h2 className="m20">{newsSelected[0].title}</h2>
             <h3 className="secondary m20">{newsSelected[0].type}</h3>
+            <div className='imge'>
+              <img src={newsSelected[0].img} alt="" />
+            </div>
             <p className="m20">{newsSelected[0].content}</p>
           </div>
         )}

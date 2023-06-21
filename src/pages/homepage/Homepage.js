@@ -3,7 +3,7 @@ import { AuthContext } from "../../context";
 import { readNews, readLast, countNews } from "../../apis/news";
 import NewsLetter from "./news/NewsLetter";
 import s from "./Homepage.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, ScrollRestoration } from "react-router-dom";
 
 export default function Admin() {
   const [newsLetter, setNewLetter] = useState([]);
@@ -44,6 +44,9 @@ export default function Admin() {
               <h1 className="m20">A LA UNE !</h1>
               <h2 className="m20">{lastNews[0].title}</h2>
               <h3 className="secondary m20">{lastNews[0].type}</h3>
+              <div className="imge">
+                <img src={lastNews[0].img} alt="" />
+              </div>
               <p className="m20">{lastNews[0].content}</p>
             </NavLink>
 
@@ -56,6 +59,9 @@ export default function Admin() {
                     key={i}>
                     <h2 className="m20">{a.title}</h2>
                     <h3 className="secondary m20">{a.type}</h3>
+                    <div className="img">
+                      <img src={a.img} alt="" />
+                    </div>
                     <p className="m20">{a.content}</p>
                   </NavLink>
                 </div>
@@ -67,6 +73,7 @@ export default function Admin() {
       <div id="container" className={`${s.news} d-flex flex-column jcsb`}>
         <NewsLetter data={newsLetter} />
       </div>
+      <ScrollRestoration />
     </section>
   );
 }
