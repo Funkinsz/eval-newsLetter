@@ -59,7 +59,7 @@ export default function Register() {
   });
 
   return (
-    <section className={`d-flex flex-column aic p20`}>
+    <div className={`d-flex flex-fill flex-column aic p20`}>
       <h1>INSCRIPTION</h1>
 
       <form onSubmit={submit} className={`d-flex flex-column aic jcc m20`}>
@@ -102,6 +102,6 @@ export default function Register() {
           Valider
         </button>
       </form>
-    </section>
+    </div>
   );
 }

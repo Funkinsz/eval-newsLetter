@@ -56,11 +56,11 @@ export default function Theme() {
                     onClick={() => handleCount(a.id)}
                     to={`/resume?id=${a.id}`}
                     key={i}>
-                    <h2 className="m20">{a.title}</h2>
-                    <h3 className="secondary m20">{a.type}</h3>
                     <div className="img">
                       <img src={a.img} alt="" />
                     </div>
+                    <h2 className="m20">{a.title}</h2>
+                    <h3 className="secondary m20">{a.type}</h3>
                     <p className="m20">{a.content}</p>
                   </NavLink>
                 </div>

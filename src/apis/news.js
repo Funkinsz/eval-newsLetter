@@ -16,8 +16,18 @@ export async function addNews(addNews) {
   }
 }
 
+export async function readPage() {
+  const response = await fetch(API + "/read")
+  return response.json()
+}
+
+export async function readViews() {
+  const response = await fetch(API + "/moreView")
+  return response.json()
+}
+
 export async function readNews() {
-  const response = await fetch(`${API}/read`);
+  const response = await fetch(`${API}/readHome`);
   const resFromBack = await response.json();
   if (response.ok) {
     return resFromBack;

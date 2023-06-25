@@ -9,7 +9,7 @@ export default function Header() {
     <header>
       <div className={`d-flex jcsb aic main-nav m20`}>
         <NavLink to="/">
-          <h1 className={`divider m10`}>MY NEWS</h1>
+          <h1 className={`m10`}>MY NEWS</h1>
         </NavLink>
         <nav>
           <ul className={`d-flex`}>
