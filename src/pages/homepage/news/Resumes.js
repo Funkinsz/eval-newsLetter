@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
-import { readNews, readResume } from "../../../apis/news";
-import { useLocation } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { newsLiked, readPage, readResume } from "../../../apis/news";
+import { useLocation, useNavigate } from "react-router";
 import s from "../Homepage.module.scss";
 import NewsLetter from "./NewsLetter";
+import { AuthContext } from "../../../context";
 
 export default function Resume() {
   // recherche l'id dans l'url pour envoyé une requete ciblé sur un article
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParameters = new URLSearchParams(location.search);
   const id = Number(queryParameters.get("id"));
+  const { user } = useContext(AuthContext);
+  const data = { id, user };
 
   const [newsLetter, setNewLetter] = useState([]);
   const [newsSelected, setNewsSelected] = useState([]);
 
   const news = async () => {
     try {
-      const resSelect = await readResume(id);
-      const resNews = await readNews();
+      const resSelect = await readResume(data);
+      const resNews = await readPage(data);
       setNewsSelected(resSelect);
       setNewLetter(resNews);
     } catch (error) {
@@ -28,15 +32,38 @@ export default function Resume() {
     news();
   }, [id]);
 
+  const handleLike = async (e) => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      await newsLiked({ user, e });
+      news();
+    }
+  };
+
+  console.log(newsSelected);
   return (
     <section>
       <div className={`${s.container}`}>
-        {newsSelected.length > 0 && (
+        {newsSelected[0] && (
           <div className={`${s.last} m10`}>
             <h2>{newsSelected[0].title}</h2>
             <div className="d-flex aic jcsb">
               <h3 className="secondary">{newsSelected[0].type}</h3>
-              <i className="fa-regular fa-heart"></i>
+              <div className="i d-flex aic">
+                {newsSelected[0].isLike === 0 ? (
+                  <i
+                    onClick={() => handleLike(newsSelected)}
+                    className="fa-regular fa-heart"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => handleLike(newsSelected)}
+                    className="fa-solid fa-heart"
+                  ></i>
+                )}
+                <p>{newsSelected[0].liked}</p>
+              </div>
             </div>
             <div className="imge">
               <img src={newsSelected[0].img} alt="" />

@@ -16,23 +16,23 @@ export async function addNews(addNews) {
   }
 }
 
-export async function readPage() {
-  const response = await fetch(API + "/read")
-  return response.json()
+export async function readPage(user) {
+  const response = await fetch(API + "/read?user=" + user);
+  return response.json();
 }
 
-export async function readViews() {
-  const response = await fetch(API + "/moreView")
-  return response.json()
+export async function readViews(user) {
+  const response = await fetch(API + "/moreView?user=" + user);
+  return response.json();
 }
 
-export async function readLike() {
-  const response = await fetch(API + "/moreLike")
-  return response.json()
+export async function readLike(user) {
+  const response = await fetch(API + "/moreLike?user="  + user);
+  return response.json();
 }
 
-export async function readNews() {
-  const response = await fetch(`${API}/readHome`);
+export async function readNews(user) {
+  const response = await fetch(`${API}/readHome?user=${user}`);
   const resFromBack = await response.json();
   if (response.ok) {
     return resFromBack;
@@ -41,8 +41,8 @@ export async function readNews() {
   }
 }
 
-export async function readLast() {
-  const response = await fetch(`${API}/last`);
+export async function readLast(user) {
+  const response = await fetch(`${API}/last?user=${user}`);
   const resFromBack = await response.json();
   if (response.ok) {
     return resFromBack;
@@ -52,7 +52,9 @@ export async function readLast() {
 }
 
 export async function readTheme(data) {
-  const response = await fetch(`${API}/theme?t=${data}`);
+  const response = await fetch(
+    `${API}/theme?t=${data.theme}&user=${data.user}`
+  );
   const resFromBack = await response.json();
   if (response.ok) {
     return resFromBack;
@@ -101,8 +103,10 @@ export async function readEvent() {
   }
 }
 
-export async function readResume(id) {
-  const response = await fetch(`${API}/resume?id=${id}`);
+export async function readResume(data) {
+  const response = await fetch(
+    `${API}/resume?id=${data.id}&user=${data.user}`
+  );
   const resFromBack = await response.json();
   if (response.ok) {
     return resFromBack;
@@ -118,5 +122,23 @@ export async function countNews(id) {
     return resFromBack;
   } else {
     throw new Error("Read Error");
+  }
+}
+
+export async function newsLiked(data) {
+  try {
+    const response = await fetch(API + "/like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      const resFromBack = await response.json()
+      return resFromBack;
+    }
+  } catch (error) {
+    console.error(error);
   }
 }

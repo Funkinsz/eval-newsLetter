@@ -7,23 +7,29 @@ export default function Header() {
 
   return (
     <header>
-      <div className={`d-flex jcsb aic main-nav m20`}>
+      <div className={`nav d-flex jcsb aic main-nav m20`}>
         <nav>
           <ul className={`d-flex`}>
             {!user ? (
               <>
-                <NavLink className={"login p10"} to="/login">
-                  CONNEXION
+                <NavLink className={"login"} to="/login">
+                  <i className="fa-solid fa-arrow-right-to-bracket"></i>
                 </NavLink>
-                <NavLink to="signup" className={"register p10"}>
-                  INSCRIPTION
+                <NavLink to="signup" className={"register"}>
+                  <i className="fa-solid fa-user-plus"></i>
                 </NavLink>
               </>
             ) : (
               <>
-                <NavLink className={"login p10"} to="profile">USER</NavLink>
-                <NavLink className={"register p10"} onClick={() => signout()} to="/login">
-                  DECONNEXION
+                <NavLink className={"login"} to="profile">
+                  <i className="fa-solid fa-user"></i>
+                </NavLink>
+                <NavLink
+                  className={"register"}
+                  onClick={() => signout()}
+                  to="/login"
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </NavLink>
               </>
             )}
@@ -39,19 +45,13 @@ export default function Header() {
           <NavLink to="/theme?t=musique" className={`d-flex aic jcc`}>
             MUSIQUE
           </NavLink>
-          <NavLink
-            to="/theme?t=jeux video"
-            className={`d-flex aic jcc`}
-          >
+          <NavLink to="/theme?t=jeux video" className={`d-flex aic jcc`}>
             JEUX VIDEO
           </NavLink>
           <NavLink to="/theme?t=cinema" className={`d-flex aic jcc`}>
             CINEMA
           </NavLink>
-          <NavLink
-            to="/theme?t=evenement"
-            className={`d-flex aic jcc`}
-          >
+          <NavLink to="/theme?t=evenement" className={`d-flex aic jcc`}>
             EVENEMENTS
           </NavLink>
         </ul>

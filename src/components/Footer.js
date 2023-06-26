@@ -33,25 +33,25 @@ export default function Footer() {
       {resTop5.length > 0 && (
         <>
           <ul className={`m10 d-flex flex-column`}>
-            <h4>TOP MUSIQUES</h4>
+            <h3>TOP MUSIQUES</h3>
             {resTop5[0].map((a, i) => (
               <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
-            <h4>TOP JEUX VIDEO</h4>
+            <h3>TOP JEUX VIDEO</h3>
             {resTop5[1].map((a, i) => (
               <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
-            <h4>TOP CINEMAS</h4>
+            <h3>TOP CINEMAS</h3>
             {resTop5[2].map((a, i) => (
               <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
-            <h4>TOP EVENEMENTS</h4>
+            <h3>TOP EVENEMENTS</h3>
             {resTop5[3].map((a, i) => (
               <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
             ))}

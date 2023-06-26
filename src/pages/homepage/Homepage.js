@@ -6,6 +6,7 @@ import {
   readPage,
   readViews,
   readLike,
+  newsLiked,
 } from "../../apis/news";
 import NewsLetter from "./news/NewsLetter";
 import s from "./Homepage.module.scss";
@@ -23,11 +24,11 @@ export default function Admin() {
 
   const news = async () => {
     try {
-      const resNews = await readNews();
-      const resLast = await readLast();
-      const resPage = await readPage();
-      const resView = await readViews();
-      const resLike = await readLike();
+      const resNews = await readNews(user);
+      const resLast = await readLast(user);
+      const resPage = await readPage(user);
+      const resView = await readViews(user);
+      const resLike = await readLike(user);
       setNewLetter(resNews);
       setLastNews(resLast);
       setNewsPage(resPage);
@@ -50,16 +51,17 @@ export default function Admin() {
     news();
   }, []);
 
-  function handleLike() {
+  const handleLike = async (e) => {
     if (!user) {
       navigate("/login");
     } else {
-      console.log("liked");
+      await newsLiked({ user, e });
+      news();
     }
-  }
+  };
 
   return (
-    <section>
+    <section className="d-flex">
       <div className={`${s.container}`}>
         {lastNews.length > 0 && (
           <div className={`d-flex flex-column aic`}>
@@ -68,8 +70,8 @@ export default function Admin() {
               className={`${s.last} ${s.border} d-flex flex-column flex-fill jcse m10`}
             >
               <NavLink
-                onClick={() => handleCount(lastNews[0].id)}
-                to={`/resume?id=${lastNews[0].id}`}
+                onClick={() => handleCount(lastNews[0].idNews)}
+                to={`/resume?id=${lastNews[0].idNews}`}
                 className={`${s.last}`}
               >
                 <div className="imge">
@@ -81,18 +83,28 @@ export default function Admin() {
                 </div>
               </NavLink>
               <div className="i d-flex aic">
-                <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                {lastNews[0].isLike === 1 ? (
+                  <i
+                    onClick={() => handleLike(lastNews[0])}
+                    className="fa-solid fa-heart"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => handleLike(lastNews[0])}
+                    className="fa-regular fa-heart"
+                  ></i>
+                )}
                 <p>{lastNews[0].liked}</p>
               </div>
             </div>
 
-            <div className={`d-flex`}>
+            <div className={`${s.last2} d-flex`}>
               <div
                 className={`${s.second} ${s.border} d-flex flex-fill flex-column jcsb m10`}
               >
                 <NavLink
-                  onClick={() => handleCount(lastNews[1].id)}
-                  to={`/resume?id=${lastNews[1].id}`}
+                  onClick={() => handleCount(lastNews[1].idNews)}
+                  to={`/resume?id=${lastNews[1].idNews}`}
                   className={`d-flex flex-column flex-fill jcsb`}
                 >
                   <div className="img">
@@ -102,7 +114,17 @@ export default function Admin() {
                   <h3 className="secondary m20">{lastNews[1].type}</h3>
                 </NavLink>
                 <div className="i d-flex aic">
-                  <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                  {lastNews[1].isLike === 1 ? (
+                    <i
+                      onClick={() => handleLike(lastNews[1])}
+                      className="fa-solid fa-heart"
+                    ></i>
+                  ) : (
+                    <i
+                      onClick={() => handleLike(lastNews[1])}
+                      className="fa-regular fa-heart"
+                    ></i>
+                  )}
                   <p>{lastNews[1].liked}</p>
                 </div>
               </div>
@@ -111,8 +133,8 @@ export default function Admin() {
                 className={`${s.second} ${s.border} d-flex flex-fill flex-column jcsb m10`}
               >
                 <NavLink
-                  onClick={() => handleCount(lastNews[2].id)}
-                  to={`/resume?id=${lastNews[2].id}`}
+                  onClick={() => handleCount(lastNews[2].idNews)}
+                  to={`/resume?id=${lastNews[2].idNews}`}
                   className={`d-flex flex-column flex-fill jcsb`}
                 >
                   <div className="img">
@@ -122,7 +144,17 @@ export default function Admin() {
                   <h3 className="secondary m20">{lastNews[2].type}</h3>
                 </NavLink>
                 <div className="i d-flex aic">
-                  <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                  {lastNews[2].isLike === 1 ? (
+                    <i
+                      onClick={() => handleLike(lastNews[2])}
+                      className="fa-solid fa-heart"
+                    ></i>
+                  ) : (
+                    <i
+                      onClick={() => handleLike(lastNews[2])}
+                      className="fa-regular fa-heart"
+                    ></i>
+                  )}
                   <p>{lastNews[2].liked}</p>
                 </div>
               </div>
@@ -135,8 +167,8 @@ export default function Admin() {
               {newsLetter.map((a, i) => (
                 <div className={`${s.oneNews} ${s.border}`}>
                   <NavLink
-                    onClick={() => handleCount(a.id)}
-                    to={`/resume?id=${a.id}`}
+                    onClick={() => handleCount(a.idNews)}
+                    to={`/resume?id=${a.idNews}`}
                     key={i}
                     className={"d-flex flex-column jcsb"}
                   >
@@ -147,7 +179,17 @@ export default function Admin() {
                     <h3 className="secondary m20">{a.type}</h3>
                   </NavLink>
                   <div className="i d-flex aic">
-                    <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                    {a.isLike === 1 ? (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-solid fa-heart"
+                      ></i>
+                    ) : (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-regular fa-heart"
+                      ></i>
+                    )}
                     <p>{a.liked}</p>
                   </div>
                 </div>
@@ -163,8 +205,8 @@ export default function Admin() {
                   className={`${s.oneNews} ${s.border} d-flex flex-fill flex-column jcse`}
                 >
                   <NavLink
-                    onClick={() => handleCount(a.id)}
-                    to={`/resume?id=${a.id}`}
+                    onClick={() => handleCount(a.idNews)}
+                    to={`/resume?id=${a.idNews}`}
                     key={i}
                     className={"d-flex flex-fill flex-column jcsb"}
                   >
@@ -175,7 +217,17 @@ export default function Admin() {
                     <h3 className="secondary m20">{a.type}</h3>
                   </NavLink>
                   <div className="i d-flex aic">
-                    <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                    {a.isLike === 1 ? (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-solid fa-heart"
+                      ></i>
+                    ) : (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-regular fa-heart"
+                      ></i>
+                    )}
                     <p>{a.liked}</p>
                   </div>
                 </div>
@@ -191,8 +243,8 @@ export default function Admin() {
                   className={`${s.oneNews} ${s.border} d-flex flex-fill flex-column jcse`}
                 >
                   <NavLink
-                    onClick={() => handleCount(a.id)}
-                    to={`/resume?id=${a.id}`}
+                    onClick={() => handleCount(a.idNews)}
+                    to={`/resume?id=${a.idNews}`}
                     key={i}
                     className={"d-flex flex-fill flex-column jcsb"}
                   >
@@ -203,7 +255,17 @@ export default function Admin() {
                     <h3 className="secondary m20">{a.type}</h3>
                   </NavLink>
                   <div className="i d-flex aic">
-                    <i onClick={handleLike} className="fa-regular fa-heart"></i>
+                    {a.isLike === 1 ? (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-solid fa-heart"
+                      ></i>
+                    ) : (
+                      <i
+                        onClick={() => handleLike(a)}
+                        className="fa-regular fa-heart"
+                      ></i>
+                    )}
                     <p>{a.liked}</p>
                   </div>
                 </div>
