@@ -24,7 +24,7 @@ export default function NewsLetter(props) {
   const [knockId, setKnockId] = useState(null)
 
   // nombre de news par page
-  const itemsPerPage = 4;
+  const itemsPerPage = 3;
 
   // match les précédent useState pour générer le contenu de la pagination
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function NewsLetter(props) {
   const position = findId(data, id);
   // on calcule le numero de page ou se trouve l'ID,
   // pour cela divisise la position apr le nombre de news par page et l'arrondit à l'unité on arrondit 
-  const newPosition = ((position - 1) / 4).toFixed(0);
+  const newPosition = ((position - 1) / 3).toFixed(0);
 
   // prend en compte le numero de page clické et change le contenu de la pagination
   function handlePageClick(e) {
@@ -57,17 +57,17 @@ export default function NewsLetter(props) {
   };
   
   // ce useEffect fonctionne uniquement si un ID est retourvé dans l'URL
-  // useEffect(() => {
-  //   if (id && knockId !== true) {
-  //     const endOffset = itemOffset + itemsPerPage;
-  //     setCurrentItems(data.slice(itemOffset, endOffset));
-  //     setPageCount(Math.ceil(data.length / itemsPerPage));
+  useEffect(() => {
+    if (id && knockId !== true) {
+      const endOffset = itemOffset + itemsPerPage;
+      setCurrentItems(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
 
-  //     const selectedPage = newPosition;
-  //     const newOffset = (selectedPage * itemsPerPage) % data.length;
-  //     setItemOffset(newOffset);
-  //   }
-  // }, [itemOffset, itemsPerPage, data]);
+      const selectedPage = newPosition;
+      const newOffset = (selectedPage * itemsPerPage) % data.length;
+      setItemOffset(newOffset);
+    }
+  }, [itemOffset, itemsPerPage, data]);
 
   // renvoie le nombre de clic pour généré le top 5 des news les plus vue
   const handleCount = async (id) => {
@@ -82,6 +82,8 @@ export default function NewsLetter(props) {
     <>
       <div className={`${s.sidebar} d-flex flex-fill flex-column jcse m10`}>
         <h3 className="d-flex aic jcc">MY NEWS EN CONTINU</h3>
+
+        <div className="divider"></div>
         {currentItems.map((n, i) => {
           return (
             <div
@@ -106,7 +108,7 @@ export default function NewsLetter(props) {
         pageCount={pageCount}
         previousLabel="< "
         renderOnZeroPageCount={null}
-        // forcePage={id ? newPosition : 0} // si un id est trouvé, forcePage cible le numero de page trouver, sinon l'affiche se fait par defaut
+        forcePage={id ? newPosition : 0} // si un id est trouvé, forcePage cible le numero de page trouver, sinon l'affiche se fait par defaut
       />
     </>
   );

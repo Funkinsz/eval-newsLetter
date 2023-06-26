@@ -26,6 +26,11 @@ export async function readViews() {
   return response.json()
 }
 
+export async function readLike() {
+  const response = await fetch(API + "/moreLike")
+  return response.json()
+}
+
 export async function readNews() {
   const response = await fetch(`${API}/readHome`);
   const resFromBack = await response.json();

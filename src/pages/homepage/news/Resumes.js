@@ -11,7 +11,7 @@ export default function Resume() {
   const id = Number(queryParameters.get("id"));
 
   const [newsLetter, setNewLetter] = useState([]);
-  const [newsSelected, setNewsSelected] = useState([])
+  const [newsSelected, setNewsSelected] = useState([]);
 
   const news = async () => {
     try {
@@ -33,9 +33,12 @@ export default function Resume() {
       <div className={`${s.container}`}>
         {newsSelected.length > 0 && (
           <div className={`${s.last} m10`}>
-            <h2 className="m20">{newsSelected[0].title}</h2>
-            <h3 className="secondary m20">{newsSelected[0].type}</h3>
-            <div className='imge'>
+            <h2>{newsSelected[0].title}</h2>
+            <div className="d-flex aic jcsb">
+              <h3 className="secondary">{newsSelected[0].type}</h3>
+              <i className="fa-regular fa-heart"></i>
+            </div>
+            <div className="imge">
               <img src={newsSelected[0].img} alt="" />
             </div>
             <p className="m20">{newsSelected[0].content}</p>
