@@ -23,10 +23,8 @@ export default function Admin() {
     news();
   }, []);
 
-  console.log(newsLetter);
-
   return (
-    <section>
+    <section className="d-flex aic jcc">
       {user.rôle !== 1 ? (
         <Navigate to="/" />
       ) : (

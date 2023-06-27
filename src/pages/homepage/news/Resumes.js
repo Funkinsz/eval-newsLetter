@@ -12,7 +12,7 @@ export default function Resume() {
   const queryParameters = new URLSearchParams(location.search);
   const id = Number(queryParameters.get("id"));
   const { user } = useContext(AuthContext);
-  const data = { id, user };
+  const data = { id, user: user ? user.id : null };
 
   const [newsLetter, setNewLetter] = useState([]);
   const [newsSelected, setNewsSelected] = useState([]);
@@ -20,7 +20,7 @@ export default function Resume() {
   const news = async () => {
     try {
       const resSelect = await readResume(data);
-      const resNews = await readPage(data);
+      const resNews = await readPage(user ? user.id : null);
       setNewsSelected(resSelect);
       setNewLetter(resNews);
     } catch (error) {
@@ -45,30 +45,28 @@ export default function Resume() {
   return (
     <section>
       <div className={`${s.container}`}>
-        {newsSelected[0] && (
+        {newsSelected && newsSelected && (
           <div className={`${s.last} m10`}>
-            <h2>{newsSelected[0].title}</h2>
+            <h2>{newsSelected.title}</h2>
             <div className="d-flex aic jcsb">
-              <h3 className="secondary">{newsSelected[0].type}</h3>
+              <h3 className="secondary">{newsSelected.type}</h3>
               <div className="i d-flex aic">
-                {newsSelected[0].isLike === 0 ? (
+                {newsSelected.isLike === 0 ? (
                   <i
                     onClick={() => handleLike(newsSelected)}
-                    className="fa-regular fa-heart"
-                  ></i>
+                    className="fa-regular fa-heart"></i>
                 ) : (
                   <i
                     onClick={() => handleLike(newsSelected)}
-                    className="fa-solid fa-heart"
-                  ></i>
+                    className="fa-solid fa-heart"></i>
                 )}
-                <p>{newsSelected[0].liked}</p>
+                <p>{newsSelected.liked}</p>
               </div>
             </div>
             <div className="imge">
-              <img src={newsSelected[0].img} alt="" />
+              <img src={newsSelected.img} alt="" />
             </div>
-            <p className="m20">{newsSelected[0].content}</p>
+            <p className="m20">{newsSelected.content}</p>
           </div>
         )}
       </div>

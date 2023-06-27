@@ -85,12 +85,11 @@ export default function NewsLetter(props) {
         <div className="divider"></div>
         {currentItems && currentItems.map((n, i) => {
           return (
-            <div
+            <div key={i}
               className={`${s.sbarnews} d-flex flex-fill flex-column jcc ${(i % 2) === 1 && 'grey'}`}>
               <NavLink
                 onClick={() => handleCount(n.idNews)}
-                to={`/resume?id=${n.idNews}`}
-                key={i}>
+                to={`/resume?id=${n.idNews}`}>
                 <h2>{n.type} :</h2>
                 <h4>{n.title}</h4>
               </NavLink>

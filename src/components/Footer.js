@@ -35,25 +35,25 @@ export default function Footer() {
           <ul className={`m10 d-flex flex-column`}>
             <h3>TOP MUSIQUES</h3>
             {resTop5[0].map((a, i) => (
-              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
+              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.idNews}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
             <h3>TOP JEUX VIDEO</h3>
             {resTop5[1].map((a, i) => (
-              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
+              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.idNews}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
             <h3>TOP CINEMAS</h3>
             {resTop5[2].map((a, i) => (
-              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
+              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.idNews}`}>{a.title}</NavLink>
             ))}
           </ul>
           <ul className={`m10 d-flex flex-column`}>
             <h3>TOP EVENEMENTS</h3>
             {resTop5[3].map((a, i) => (
-              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.id}`}>{a.title}</NavLink>
+              <NavLink onClick={() => handleCount(a.id)} key={i} to={`/resume?id=${a.idNews}`}>{a.title}</NavLink>
             ))}
           </ul>
         </>

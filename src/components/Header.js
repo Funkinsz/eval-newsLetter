@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className={`nav d-flex jcsb aic main-nav m20`}>
+      <div className={`nav d-flex jcsb aic main-nav`}>
         <nav>
           <ul className={`d-flex`}>
             {!user ? (
@@ -22,21 +22,21 @@ export default function Header() {
             ) : (
               <>
                 <NavLink className={"login"} to="profile">
-                  <i className="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user m10"></i>
                 </NavLink>
                 <NavLink
                   className={"register"}
                   onClick={() => signout()}
                   to="/login"
                 >
-                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  <i className="fa-solid fa-arrow-right-from-bracket m10"></i>
                 </NavLink>
               </>
             )}
           </ul>
         </nav>
-        <NavLink to="/">
-          <h1 className={`m10`}>MY NEWS</h1>
+        <NavLink className={"h1"} to="/">
+          <h1 className={`m10`}>MY <i className="fa-brands fa-neos"></i>EWS</h1>
         </NavLink>
         <div className="none"></div>
       </div>

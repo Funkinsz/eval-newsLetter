@@ -17,6 +17,7 @@ export async function addNews(addNews) {
 }
 
 export async function readPage(user) {
+  console.log(user);
   const response = await fetch(API + "/read?user=" + user);
   return response.json();
 }
@@ -52,6 +53,7 @@ export async function readLast(user) {
 }
 
 export async function readTheme(data) {
+  console.log(data);
   const response = await fetch(
     `${API}/theme?t=${data.theme}&user=${data.user}`
   );
@@ -104,6 +106,7 @@ export async function readEvent() {
 }
 
 export async function readResume(data) {
+  console.log(data);
   const response = await fetch(
     `${API}/resume?id=${data.id}&user=${data.user}`
   );
@@ -140,5 +143,13 @@ export async function newsLiked(data) {
     }
   } catch (error) {
     console.error(error);
+  }
+}
+
+export async function readMyLikes(user) {
+  console.log(user);
+  const response = await fetch(API + "/myLikes?user=" + user.id)
+  if (response.ok) {
+    return await response.json()
   }
 }

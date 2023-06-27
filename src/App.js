@@ -3,7 +3,7 @@ import AuthProvider from "./components/AuthProvider/AuthProvider";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         </>
         <Footer />
       </AuthProvider>
+      <ScrollRestoration />
     </div>
   );
 }
